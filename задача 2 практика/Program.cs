@@ -14,7 +14,7 @@ namespace задача_2_практика
             int n=-1;
             int k=-1;
             int kolvo = 0;
-            int conclusion = 0;
+            string conclusion ="";
             int razn = 0;
             FileStream file1 = new FileStream("d://INPUT.TXT", FileMode.Open); //создаем файловый поток 
             FileStream file2 = new FileStream("d://OUTPUT.TXT", FileMode.Open);
@@ -91,6 +91,28 @@ namespace задача_2_практика
                 razn = -1;
             }
 
+            int[] k_mas = new int[k];
+
+            for (int j=0; j<aas.Length; j++)
+            {
+                mas[aas[j]] = mas[aas[j]] + mas[aas[j + 1]];
+                number = aas[j + 1];
+                for (int arr= aas[j + 1]; arr<mas.Length; arr++ )
+                {
+                    mas[arr] = mas[arr++];
+                }
+                j++;
+            }
+
+            for (int i=0; i<k; i++)
+            {
+                k_mas[i] = mas[i];
+            }
+
+            for (int i = 0; i < k; i++)
+            {
+                conclusion = conclusion + k_mas[i]+" ";
+            }
 
             StreamWriter writer = new StreamWriter(file2); //создаем «потоковый писатель» и связываем его с файловым потоком 
             writer.Write(conclusion); //записываем в файл
